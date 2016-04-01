@@ -1,5 +1,5 @@
 //
-//  MyDrawGrid.m
+//  QWGraphView.m
 //  DrawGrid
 //
 //  Created by 莫锹文 on 16/3/28.
@@ -9,8 +9,6 @@
 #import "QWGraphView.h"
 
 @interface QWGraphView ()
-
-//@property (nonatomic, strong) NSMutableArray *originPoints;
 
 @property (nonatomic, strong) CAShapeLayer *lineLayer;
 @property (nonatomic, strong) CAGradientLayer *gradientLayer;
@@ -26,7 +24,10 @@
 	if ([super initWithFrame:frame])
 	{
 		self.valueX = [NSArray array];
+		self.valueRangeX = QWMakeRange(0, frame.size.width);
 		self.valueY = [NSArray array];
+		self.valueRangeY = QWMakeRange(0, frame.size.height);
+
 		self.showPoints = YES;
 		self.showSmooth = YES;
 
@@ -55,6 +56,7 @@
 
 		self.backgroundColor = [UIColor clearColor];
 	}
+
 	return self;
 }
 
@@ -65,24 +67,69 @@
 	for (int i = 0; i < self.valueX.count; i++)
 	{
 		CGPoint p;
+		CGFloat x;
+		CGFloat y;
 
 		switch (self.direction)
 		{
 			case GraphDirectionVertical:
-				p = CGPointMake([self.valueX[i] floatValue], self.frame.size.height - [self.valueY[i] floatValue]);
-				break;
+			{
+				x = [self.valueX[i] floatValue];
+				y = [self.valueY[i] floatValue];
+
+
+				x = (x - self.valueRangeX.min) / (self.valueRangeX.max - self.valueRangeX.min) * self.frame.size.width;
+				y = (y - self.valueRangeY.min) / (self.valueRangeY.max - self.valueRangeY.min) * self.frame.size.height;
+
+				y = self.frame.size.height - y;
+				NSLog(@"after %f %f", x, y);
+			}
+			break;
 
 			case GraphDirectionHorizontal:
-				p = CGPointMake([self.valueY[i] floatValue], [self.valueX[i] floatValue]);
-				break;
+			{
+				x = [self.valueY[i] floatValue];
+				y = [self.valueX[i] floatValue];
+                
+                x = (x - self.valueRangeY.min) / (self.valueRangeY.max - self.valueRangeY.min) * self.frame.size.width;
+                y = (y - self.valueRangeX.min) / (self.valueRangeX.max - self.valueRangeX.min) * self.frame.size.height;
+
+			}
+			break;
 
 			default:
 
 				break;
 		}
 
+		p = CGPointMake(x, y);
+
 		[self.originPoints addObject:[NSValue valueWithCGPoint:p]];
 	}
+}
+
+- (CGFloat)maxValue:(NSArray *)array
+{
+	CGFloat max = 0;
+
+	for (NSNumber *number in array)
+	{
+		max = [number floatValue] > max ?[number floatValue] : max;
+	}
+
+	return max;
+}
+
+- (CGFloat)minValue:(NSArray *)array
+{
+	CGFloat min = CGFLOAT_MAX;
+
+	for (NSNumber *number in array)
+	{
+		min = [number floatValue] < min ?[number floatValue] : min;
+	}
+
+	return min;
 }
 
 - (void)drawRect:(CGRect)rect
@@ -240,6 +287,13 @@
 	}
 }
 
+- (void)setValueRangeX:(QWRange)valueRangeX
+{
+	_valueRangeX = valueRangeX;
+
+	[self setToPoints];
+}
+
 - (void)setValueY:(NSArray *)valueY
 {
 	_valueY = valueY;
@@ -248,6 +302,13 @@
 	{
 		[self setToPoints];
 	}
+}
+
+- (void)setValueRangeY:(QWRange)valueRangeY
+{
+	_valueRangeY = valueRangeY;
+
+	[self setToPoints];
 }
 
 - (void)setShowSmooth:(BOOL)showSmooth

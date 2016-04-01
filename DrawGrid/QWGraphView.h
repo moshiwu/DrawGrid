@@ -1,5 +1,5 @@
 //
-//  MyDrawGrid.h
+//  QWGraphView.h
 //  DrawGrid
 //
 //  Created by 莫锹文 on 16/3/28.
@@ -7,6 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+
+typedef struct {
+	CGFloat min;
+	CGFloat max;
+} QWRange;
+
+NS_INLINE QWRange QWMakeRange(CGFloat min,CGFloat max) {
+    QWRange r;
+    r.min = min;
+    r.max = max;
+    return r;
+}
 
 typedef enum : NSUInteger
 {
@@ -16,10 +28,17 @@ typedef enum : NSUInteger
 
 @interface QWGraphView : UIView
 
+#pragma mark - 坐标点定义
+
 /**
  *  X坐标值（水平方向下）
  */
 @property (nonatomic, strong) NSArray *valueX;
+
+/**
+ *  X坐标值范围（水平方向下）
+ */
+@property (nonatomic, assign) QWRange valueRangeX;
 
 /**
  *  Y坐标值（水平方向下）
@@ -27,9 +46,14 @@ typedef enum : NSUInteger
 @property (nonatomic, strong) NSArray *valueY;
 
 /**
+ *  Y坐标值范围（水平方向下）
+ */
+@property (nonatomic, assign) QWRange valueRangeY;
+
+/**
  *  坐标点的实际坐标，提供给外部调用
  */
-@property (nonatomic, strong,readonly) NSMutableArray *originPoints;
+@property (nonatomic, strong, readonly) NSMutableArray *originPoints;
 
 /**
  *  表格的方向
