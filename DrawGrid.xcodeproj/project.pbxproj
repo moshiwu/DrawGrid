@@ -14,7 +14,6 @@
 		AF8339CA1CA97D4B00E8AF6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF8339C91CA97D4B00E8AF6C /* Assets.xcassets */; };
 		AF8339CD1CA97D4B00E8AF6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF8339CB1CA97D4B00E8AF6C /* LaunchScreen.storyboard */; };
 		AF8339D61CA97D6B00E8AF6C /* QWGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8339D51CA97D6B00E8AF6C /* QWGraphView.m */; };
-		AF8339FA1CAA22AF00E8AF6C /* TestDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8339F91CAA22AF00E8AF6C /* TestDraw.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +29,6 @@
 		AF8339CE1CA97D4B00E8AF6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF8339D41CA97D6B00E8AF6C /* QWGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWGraphView.h; sourceTree = "<group>"; };
 		AF8339D51CA97D6B00E8AF6C /* QWGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWGraphView.m; sourceTree = "<group>"; };
-		AF8339F81CAA22AF00E8AF6C /* TestDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDraw.h; sourceTree = "<group>"; };
-		AF8339F91CAA22AF00E8AF6C /* TestDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDraw.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +72,6 @@
 				AF8339CB1CA97D4B00E8AF6C /* LaunchScreen.storyboard */,
 				AF8339CE1CA97D4B00E8AF6C /* Info.plist */,
 				AF8339BD1CA97D4B00E8AF6C /* Supporting Files */,
-				AF8339F81CAA22AF00E8AF6C /* TestDraw.h */,
-				AF8339F91CAA22AF00E8AF6C /* TestDraw.m */,
 			);
 			path = DrawGrid;
 			sourceTree = "<group>";
@@ -161,7 +156,6 @@
 			files = (
 				AF8339C51CA97D4B00E8AF6C /* ViewController.m in Sources */,
 				AF8339D61CA97D6B00E8AF6C /* QWGraphView.m in Sources */,
-				AF8339FA1CAA22AF00E8AF6C /* TestDraw.m in Sources */,
 				AF8339C21CA97D4B00E8AF6C /* AppDelegate.m in Sources */,
 				AF8339BF1CA97D4B00E8AF6C /* main.m in Sources */,
 			);
